@@ -15,7 +15,7 @@ fn main() {
     acc.sort();
 
     let mut decc = acc.clone();
-    decc.sort();
+    decc.reverse();
 
     let mut first_num: &u32 = &0;
     let mut second_num: &u32 = &0;
@@ -33,5 +33,5 @@ fn main() {
             }
         }
     }
-    println!("{} * {} * {}= {}", first_num, second_num, third_num, first_num * second_num * third_num)
+    println!("{} * {} * {}= {}", first_num, second_num, third_num, first_num * second_num * third_num);
 }
