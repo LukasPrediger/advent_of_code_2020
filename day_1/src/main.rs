@@ -11,27 +11,19 @@ fn main() {
     for line in lines {
         acc.push(line.unwrap().parse::<u32>().unwrap())
     }
-
     acc.sort();
 
-    let mut decc = acc.clone();
-    decc.reverse();
-
-    let mut first_num: &u32 = &0;
-    let mut second_num: &u32 = &0;
-    let mut third_num: &u32 = &0;
-
-    for a in acc.iter() {
-        for b in decc.iter() {
+    'outer: for a in acc.iter() {
+        for b in acc.iter() {
             for c in acc.iter() {
                 if a + b + c == 2020 {
-                    first_num = a;
-                    second_num = b;
-                    third_num = c;
-                    break;
+                    let first_num = a;
+                    let second_num = b;
+                    let third_num = c;
+                    println!("{} * {} * {}= {}", first_num, second_num, third_num, first_num * second_num * third_num);
+                    break 'outer;
                 }
             }
         }
     }
-    println!("{} * {} * {}= {}", first_num, second_num, third_num, first_num * second_num * third_num);
 }
