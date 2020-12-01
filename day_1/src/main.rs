@@ -19,15 +19,19 @@ fn main() {
 
     let mut first_num: &u32 = &0;
     let mut second_num: &u32 = &0;
+    let mut third_num: &u32 = &0;
 
     for a in acc.iter() {
         for b in decc.iter() {
-            if a + b == 2020 {
-                first_num = a;
-                second_num = b;
-                break;
+            for c in acc.iter() {
+                if a + b + c == 2020 {
+                    first_num = a;
+                    second_num = b;
+                    third_num = c;
+                    break;
+                }
             }
         }
     }
-    println!("{} + {} = {}", first_num, second_num, first_num * second_num)
+    println!("{} * {} * {}= {}", first_num, second_num, third_num, first_num * second_num * third_num)
 }
