@@ -3,9 +3,7 @@ use std::io::{BufRead, BufReader};
 
 fn main() {
     let file = File::open("input.txt").expect("Error opening file");
-
     let mut acc = Vec::new();
-
     let lines = BufReader::new(file).lines();
 
     for line in lines {
