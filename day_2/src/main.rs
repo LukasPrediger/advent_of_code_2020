@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::io::{BufReader, BufRead};
+use std::io::{BufRead, BufReader};
 
 fn main() {
     let file = File::open("input.txt").expect("Error opening file");
@@ -16,11 +16,13 @@ fn main() {
         let quantifier: Vec<&str> = constraint_parts[0].split("-").collect();
         let character = constraint_parts[1].chars().next().unwrap();
 
-        let (low_quantifier, high_quantifier) = (quantifier[0].parse::<usize>().unwrap(), quantifier[1].parse::<usize>().unwrap());
+        let (first_pos, second_pos) = (quantifier[0].parse::<usize>().unwrap(), quantifier[1].parse::<usize>().unwrap());
 
-        let occurrences = password.chars().filter(|x| x == &character).count();
+        let password_chars: Vec<char> = password.chars().collect();
+        let first_char: &char = password_chars.get(first_pos-1).unwrap_or(&'-');
+        let second_char: &char = password_chars.get(second_pos-1).unwrap_or(&'-');
 
-        if occurrences >= low_quantifier && occurrences <= high_quantifier {
+        if (first_char == &character) ^ (second_char == &character) {
             correct += 1;
         }
     }
