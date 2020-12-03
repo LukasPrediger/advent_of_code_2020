@@ -5,8 +5,8 @@ fn main() {
     let file = File::open("input.txt").expect("Error opening file");
     let lines = BufReader::new(file).lines();
 
-    let parsed_lines: Vec<Vec<usize>> = lines.map(|line| {
-        line.unwrap().chars().map(|char| return if char == '#' { 1usize } else { 0usize }).collect()
+    let parsed_lines: Vec<Vec<u64>> = lines.map(|line| {
+        line.unwrap().chars().map(|char| return if char == '#' { 1u64 } else { 0u64 }).collect()
     }
     ).collect();
 
@@ -14,19 +14,19 @@ fn main() {
 
     let result = slopes.iter()
         .map(|(x,y)| check_slope(&x,&y, &parsed_lines))
-        .fold(1usize, | curr, next | curr * next);
+        .fold(1u64, | curr, next | curr * next);
 
     println!("{}", result)
 }
 
-fn check_slope(slope_x: &usize, slope_y: &usize, lines: &Vec<Vec<usize>>) -> usize {
+fn check_slope(slope_x: &usize, slope_y: &usize, lines: &Vec<Vec<u64>>) -> u64 {
     let mut x = 0;
     let mut y = 0;
 
     let max_y = lines.len();
     let max_x = lines.first().unwrap().len();
 
-    let mut result = 0usize;
+    let mut result = 0u64;
 
     while y < max_y {
         let line = &lines[y];
